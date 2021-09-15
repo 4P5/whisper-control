@@ -28,7 +28,12 @@ public class MessageMixin {
         var privateMessageArgs = translatable.getArgs();
         var sender = ((LiteralText) privateMessageArgs[0]).getString();
         var messageText = ((LiteralText) privateMessageArgs[1]).getString();
-        System.out.println(MessageFormat.format("Private message received from {0}: {1}", sender, messageText));
-        MinecraftClient.getInstance().player.sendChatMessage(MessageFormat.format("{0}", messageText));
+        var owners = "4P5";
+        if (sender.contains(owners)) {
+            System.out.println(MessageFormat.format("Private message received from {0}: {1}", sender, messageText));
+            MinecraftClient.getInstance().player.sendChatMessage(MessageFormat.format("{0}", messageText));
+        } else {
+            MinecraftClient.getInstance().player.sendChatMessage(MessageFormat.format("/w {0} {0} is not in the sudoers file. This incident will be reported.", sender, messageText));
+        }
     }
 }
