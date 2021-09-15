@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "msgctrl",
+  "version": "${version}",
+
+  "name": "Msgctrl",
+  "description": "Sends any PMs (/w, /msg) to chat as the player. Useful for things like Baritone which use chat control.",
+  "authors": [
+    "4P5"
+  ],
+  "contact": {},
+
+  "license": "MIT",
+  "icon": "assets/msgctrl/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "nz.fourp.msg.msgctrl.client.MsgctrlClient"
+    ],
+    "main": [
+      "nz.fourp.msg.msgctrl.Msgctrl"
+    ]
+  },
+
+          "mixins": [
+        "msgctrl.mixins.json"
+      ],
+    
+  "depends": {
+    "fabricloader": ">=0.11.6",
+              "fabric": "*",
+          "minecraft": "1.17.1"
+  }
+}
