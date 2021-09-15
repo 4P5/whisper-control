@@ -15,11 +15,8 @@
 
   "environment": "*",
   "entrypoints": {
-    "client": [
-      "nz.fourp.msg.msgctrl.client.MsgctrlClient"
-    ],
     "main": [
-      "nz.fourp.msg.msgctrl.Msgctrl"
+      "nz.fourp.msg.msgctrl.Main"
     ]
   },
 
