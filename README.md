@@ -6,4 +6,6 @@
  
  Other mods that use chat control (mainly utility/cheat clients) can also be controlled with this. (If the prefix is `.`, you could run `.toggle auto-clicker`) I do not condone the use of cheats or hacks on servers where they are not allowed, but these tools can be very useful for private servers. 
  
- This can also be used with Command Blocks or Datapacks, keeping in mind that the sender will be `Server`. I'm working on a permission system that allows certain players to run commands, and even encrypted commands (send `/w Player1 12345`, Player1 sends `<Player1> Hello world! That was a code message!`, etc.), useful for giving people access to a single command rather than everything the account can run.
+ This can also be used with Command Blocks or Datapacks, keeping in mind that the sender will be `Server`, which is not added as an owner by default.
+# Auth System
+ I'm working on an authentication system that can "encrypt commands" (send `/w Player1 12345`, Player1 sends back `<Player1> Hello world! That was a code message!`, etc., useful for giving people access to a single command rather than everything the account can run.), and also have a simple permission system to allow or deny commands other than encrypted messages.
