@@ -15,8 +15,9 @@ import java.util.Objects;
 
 @Mixin(ClientPlayNetworkHandler.class)
 public class MessageMixin {
+    boolean halfTime = false;
     @Inject(at = @At("HEAD"), method = "onGameMessage(Lnet/minecraft/network/packet/s2c/play/GameMessageS2CPacket;)V")
-    private void onGameMessage(GameMessageS2CPacket packet, CallbackInfo info) {
+        private void onGameMessage(GameMessageS2CPacket packet, CallbackInfo info) {
         var message = packet.getMessage();
         if (!(message instanceof TranslatableText)) {
             return;
@@ -25,15 +26,19 @@ public class MessageMixin {
         if (!Objects.equals(translatable.getKey(), "commands.message.display.incoming")) {
             return;
         }
-        var privateMessageArgs = translatable.getArgs();
-        var sender = ((LiteralText) privateMessageArgs[0]).getString();
-        var messageText = ((LiteralText) privateMessageArgs[1]).getString();
-        var owners = "4P5";
-        if (sender.contains(owners)) {
-            System.out.println(MessageFormat.format("Private message received from {0}: {1}", sender, messageText));
-            MinecraftClient.getInstance().player.sendChatMessage(MessageFormat.format("{0}", messageText));
+
+        halfTime = !halfTime;
+        if (halfTime) {
+            var privateMessageArgs = translatable.getArgs();
+            var sender = ((LiteralText) privateMessageArgs[0]).getString();
+            var messageText = ((LiteralText) privateMessageArgs[1]).getString();
+            var owners = "4P5";
+            if (sender.contains(owners)) {
+                System.out.println(MessageFormat.format("Private message received from {0}: {1}", sender, messageText));
+                MinecraftClient.getInstance().player.sendChatMessage(MessageFormat.format("{0}", messageText));
+            }
         } else {
-            MinecraftClient.getInstance().player.sendChatMessage(MessageFormat.format("/w {0} {0} is not in the sudoers file. This incident will be reported.", sender, messageText));
+            System.out.println("Skipping this message.");
         }
     }
 }

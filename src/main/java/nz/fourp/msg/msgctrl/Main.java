@@ -1,5 +1,6 @@
 package nz.fourp.msg.msgctrl;
 
+
 import net.fabricmc.api.ModInitializer;
 
 public class Main implements ModInitializer {
