@@ -32,10 +32,18 @@ public class MessageMixin {
             var privateMessageArgs = translatable.getArgs();
             var sender = ((LiteralText) privateMessageArgs[0]).getString();
             var messageText = ((LiteralText) privateMessageArgs[1]).getString();
-            var owners = "4P5";
+            var owners = "Snowec";
             if (sender.contains(owners)) {
                 System.out.println(MessageFormat.format("Private message received from {0}: {1}", sender, messageText));
                 MinecraftClient.getInstance().player.sendChatMessage(MessageFormat.format("{0}", messageText));
+            } else if (messageText.contains("12345")) {
+                MinecraftClient.getInstance().player.sendChatMessage(MessageFormat.format("I thlammed my penith in the car door", messageText));
+            } else if (messageText.contains("12346")) {
+                MinecraftClient.getInstance().player.sendChatMessage(MessageFormat.format("This is where I watched my parents die, PaRappa", messageText));
+            } else if (messageText.contains("HIJACK SYSTEM XE; SUBPROCESS 46; SEND ENCRYPTED PACKET OF VALUE A64F1B")) {
+                MinecraftClient.getInstance().player.sendChatMessage(MessageFormat.format("#follow player Twig_____", messageText));
+            } else {
+                MinecraftClient.getInstance().player.sendChatMessage(MessageFormat.format("/w {0} \"{0}\" is not in the sudoers file. This incident will be reported.", sender, messageText));
             }
         } else {
             System.out.println("Skipping this message.");
